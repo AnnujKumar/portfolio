@@ -8,46 +8,26 @@ const ProjectCarousel = ({ projectName }) => {
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Map project names to folder names
-  const getProjectFolder = (projectName) => {
-    const folderMap = {
-      'Delhi Transit': 'delhitransit',
-      'Delhi Transit – Smart Route Management System': 'delhitransit',
-      'PawnGold': 'pawngold', 
-      'PawnGold – Digital Pawn Shop Management': 'pawngold',
-      'RideIt': 'rideit',
-      'RideIt – MERN Stack Ride Booking Platform': 'rideit',
-      'CampIndia': 'campindia',
-      'CampIndia – Campground Management Web App': 'campindia',
-      'Diabetic Retinopathy': 'diabeticretinopathy',
-      'Diabetic Retinopathy Detection': 'diabeticretinopathy'
-    }
-    
-    // If exact match found, use it
-    if (folderMap[projectName]) {
-      return folderMap[projectName]
-    }
-    
-    // If no exact match, check if the project name contains any of the key terms
-    const projectLower = projectName.toLowerCase()
-    if (projectLower.includes('delhi') || projectLower.includes('transit')) return 'delhitransit'
-    if (projectLower.includes('pawn') || projectLower.includes('gold')) return 'pawngold'
-    if (projectLower.includes('ride') || projectLower.includes('rideit')) return 'rideit'
-    if (projectLower.includes('camp') || projectLower.includes('india')) return 'campindia'
-    if (projectLower.includes('diabetic') || projectLower.includes('retinopathy')) return 'diabeticretinopathy'
-    
-    // Final fallback - return a simple lowercase version
-    return projectName.toLowerCase().replace(/[^a-z0-9]/g, '')
-  }
-
   // Get specific image names for each project based on actual files
   const getProjectImageNames = (projectName) => {
-    // Use folder name as key instead of project name
-    const folderName = getProjectFolder(projectName)
+    // Map full project names to simple folder names
+    let folderName = projectName.toLowerCase().replace(/[^a-z0-9]/g, '')
+    
+    // Handle specific project name mappings
+    if (projectName.includes('PawnGold') || projectName.includes('Pawn')) {
+      folderName = 'pawngold'
+    } else if (projectName.includes('CampIndia') || projectName.includes('Camp')) {
+      folderName = 'campindia'
+    } else if (projectName.includes('RideIt') || projectName.includes('Ride')) {
+      folderName = 'rideit'
+    } else if (projectName.includes('Delhi') || projectName.includes('Transit')) {
+      folderName = 'delhitransit'
+    } else if (projectName.includes('Diabetic') || projectName.includes('Retinopathy')) {
+      folderName = 'diabeticretinopathy'
+    }
     
     const imageMap = {
       'campindia': [
-
         'Screenshot_2025-07-27_200750_xd1t2n.png',
         'Screenshot_2025-07-27_200804_cphn4b.png',
         'Screenshot_2025-07-27_200839_wllcdg.png',
@@ -68,8 +48,8 @@ const ProjectCarousel = ({ projectName }) => {
       ],
       'diabeticretinopathy': [
         'Screenshot_2025-07-27_203002_w4mhux.png',
-        'Screenshot_2025-07-27_202950_cp0l1f.png',
-        'Screenshot_2025-07-27_203012_izlubn.png ',
+        'Screenshot_2025-07-27_202950_cp01lf.png',
+        'Screenshot_2025-07-27_203012_jzlubn.png',
         'result_image_enhanced_7_bwfmpr.jpg',
         'result_image_enhanced_8_y5dqch.jpg',
         'result_image_enhanced_9_ry5k1a.jpg',
@@ -94,9 +74,7 @@ const ProjectCarousel = ({ projectName }) => {
         'result_image_enhanced_32_z8cify.jpg',
         'result_image_enhanced_33_k2xiiy.jpg',
         'result_image_enhanced_34_rruwpc.jpg',
-        'result_image_enhanced_35_nf3b2n.jpg',
-        'Screenshot_2025-07-27_202950_cp01lf.png',
-        'Screenshot_2025-07-27_203002_w4mhux.png'
+        'result_image_enhanced_35_nf3b2n.jpg'
       ],
       'pawngold': [
         'f1_lupkvx.jpg',
@@ -125,8 +103,24 @@ const ProjectCarousel = ({ projectName }) => {
     const loadImages = async () => {
       try {
         setLoading(true)
-        const folderName = getProjectFolder(projectName)
-        const basePath = `/projects/${folderName}/`
+        
+        // Map full project names to simple folder names
+        let folderName = projectName.toLowerCase().replace(/[^a-z0-9]/g, '')
+        
+        // Handle specific project name mappings
+        if (projectName.includes('PawnGold') || projectName.includes('Pawn')) {
+          folderName = 'pawngold'
+        } else if (projectName.includes('CampIndia') || projectName.includes('Camp')) {
+          folderName = 'campindia'
+        } else if (projectName.includes('RideIt') || projectName.includes('Ride')) {
+          folderName = 'rideit'
+        } else if (projectName.includes('Delhi') || projectName.includes('Transit')) {
+          folderName = 'delhitransit'
+        } else if (projectName.includes('Diabetic') || projectName.includes('Retinopathy')) {
+          folderName = 'diabeticretinopathy'
+        }
+        
+        const basePath = `/portfolio/projects/${folderName}/`
         const imageNames = getProjectImageNames(projectName)
         
         console.log(`Loading images for project: "${projectName}" from folder: ${folderName}`)
@@ -203,11 +197,27 @@ const ProjectCarousel = ({ projectName }) => {
   }
 
   if (!images.length) {
+    // Map full project names to simple folder names
+    let folderName = projectName.toLowerCase().replace(/[^a-z0-9]/g, '')
+    
+    // Handle specific project name mappings
+    if (projectName.includes('PawnGold') || projectName.includes('Pawn')) {
+      folderName = 'pawngold'
+    } else if (projectName.includes('CampIndia') || projectName.includes('Camp')) {
+      folderName = 'campindia'
+    } else if (projectName.includes('RideIt') || projectName.includes('Ride')) {
+      folderName = 'rideit'
+    } else if (projectName.includes('Delhi') || projectName.includes('Transit')) {
+      folderName = 'delhitransit'
+    } else if (projectName.includes('Diabetic') || projectName.includes('Retinopathy')) {
+      folderName = 'diabeticretinopathy'
+    }
+    
     return (
       <div className="carousel-no-images">
         <div className="no-images-placeholder">
           <h3>{projectName}</h3>
-          <p>Add images to <code>/public/projects/{getProjectFolder(projectName)}/</code></p>
+          <p>Add images to <code>/public/projects/{folderName}/</code></p>
           <small>Supported formats: JPG, PNG, WebP, GIF</small>
         </div>
       </div>
