@@ -1,0 +1,76 @@
+.particle-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+}
+
+/* Override body background for dark theme */
+body {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%) !important;
+}
+
+/* Override the CSS variable background */
+html,
+body {
+  background-color: #0a0a0a !important;
+}
+
+/* Override any white background from CSS variables */
+* {
+  --bg-primary: transparent !important;
+}
+
+/* Ensure content appears above the particle background */
+.App {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: transparent !important;
+}
+
+/* Remove all section backgrounds to show particle background directly */
+.hero {
+  background: transparent !important;
+}
+
+.about {
+  background: transparent !important;
+}
+
+.skills {
+  background: transparent !important;
+}
+
+.projects {
+  background: transparent !important;
+}
+
+.experience {
+  background: transparent !important;
+}
+
+.education {
+  background: transparent !important;
+}
+
+.certifications {
+  background: transparent !important;
+}
+
+.contact {
+  background: transparent !important;
+}
+
+.footer {
+  background: transparent !important;
+}
+
+/* Make header transparent to show particle background */
+.header {
+  background: transparent !important;
+}

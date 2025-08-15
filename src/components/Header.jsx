@@ -1,6 +1,41 @@
 import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+
+const AnimatedText = () => {
+  const words = ['think', 'learn', 'develop', 'deploy', 'innovate']
+  const [currentWordIndex, setCurrentWordIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length)
+    }, 2000) // Change word every 2 seconds
+
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="animated-text-container">
+      <span className="terminal-prefix">$&nbsp;</span>
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={words[currentWordIndex]}
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 30, opacity: 0 }}
+          transition={{ 
+            duration: 0.5,
+            ease: "easeInOut"
+          }}
+          className="animated-word"
+        >
+          {words[currentWordIndex]}
+        </motion.span>
+      </AnimatePresence>
+      <span className="terminal-cursor">_</span>
+    </div>
+  )
+}
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -70,16 +105,16 @@ const Header = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span>Portfolio</span>
+          <AnimatedText />
         </motion.div>
 
         <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
-          <a href="#home" onClick={() => scrollToSection('home')}>Home</a>
-          <a href="#about" onClick={() => scrollToSection('about')}>About</a>
-          <a href="#experience" onClick={() => scrollToSection('experience')}>Experience</a>
-          <a href="#skills" onClick={() => scrollToSection('skills')}>Skills</a>
-          <a href="#projects" onClick={() => scrollToSection('projects')}>Projects</a>
-          <a href="#contact" onClick={() => scrollToSection('contact')}>Contact</a>
+          <a href="#home" data-text="home" onClick={() => scrollToSection('home')}>home</a>
+          <a href="#about" data-text="about" onClick={() => scrollToSection('about')}>about</a>
+          <a href="#experience" data-text="experience" onClick={() => scrollToSection('experience')}>experience</a>
+          <a href="#skills" data-text="skills" onClick={() => scrollToSection('skills')}>skills</a>
+          <a href="#projects" data-text="projects" onClick={() => scrollToSection('projects')}>projects</a>
+          <a href="#contact" data-text="contact" onClick={() => scrollToSection('contact')}>contact</a>
         </nav>
 
         <button

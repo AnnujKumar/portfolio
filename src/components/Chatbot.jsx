@@ -2,8 +2,445 @@ import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Send, Bot, User, Sparkles } from 'lucide-react'
 
+const DogAnimation = ({ isPlaying, onComplete }) => {
+  useEffect(() => {
+    if (isPlaying) {
+      const timer = setTimeout(onComplete, 4000) // Extended animation duration
+      return () => clearTimeout(timer)
+    }
+  }, [isPlaying, onComplete])
+
+  if (!isPlaying) return null
+
+  return (
+    <motion.div
+      initial={{ scale: 0, rotate: 0, y: 50 }}
+      animate={{ 
+        scale: [0, 1.3, 1.1, 1.2, 1, 0.9, 0],
+        rotate: [0, 15, -10, 8, -5, 3, 0],
+        y: [50, -80, -100, -85, -70, -50, 20]
+      }}
+      transition={{ 
+        duration: 4,
+        times: [0, 0.25, 0.4, 0.6, 0.75, 0.9, 1],
+        ease: "easeInOut"
+      }}
+      style={{
+        position: 'absolute',
+        bottom: '70px',
+        right: '-10px',
+        width: '100px',
+        height: '100px',
+        zIndex: 100000,
+        pointerEvents: 'none'
+      }}
+    >
+      {/* Enhanced 3D Dog Body */}
+      <div style={{
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        transformStyle: 'preserve-3d',
+        transform: 'rotateX(20deg) rotateY(-20deg)'
+      }}>
+        {/* Dog Head - Enhanced */}
+        <motion.div
+          animate={{
+            rotateY: [0, 20, -20, 15, -15, 10, 0],
+            scaleX: [1, 1.15, 0.85, 1.1, 0.9, 1.05, 1],
+            rotateZ: [0, 5, -5, 3, -3, 0]
+          }}
+          transition={{
+            duration: 4,
+            times: [0, 0.3, 0.45, 0.6, 0.75, 0.85, 1],
+            ease: "easeInOut"
+          }}
+          style={{
+            position: 'absolute',
+            top: '5px',
+            left: '25px',
+            width: '50px',
+            height: '45px',
+            backgroundColor: '#FFD700',
+            borderRadius: '60% 60% 45% 45%',
+            border: '3px solid #000',
+            boxShadow: '0 6px 12px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.3)',
+            transform: 'translateZ(8px)',
+            background: 'linear-gradient(135deg, #FFD700 0%, #FFC107 50%, #FFB300 100%)'
+          }}
+        >
+          {/* Enhanced Eyes with pupils */}
+          <motion.div
+            animate={{
+              scaleY: [1, 0.1, 1, 0.3, 1],
+              scaleX: [1, 1.2, 1, 1.1, 1]
+            }}
+            transition={{
+              duration: 4,
+              times: [0, 0.3, 0.35, 0.7, 1]
+            }}
+            style={{
+              position: 'absolute',
+              top: '12px',
+              left: '10px',
+              width: '8px',
+              height: '8px',
+              backgroundColor: '#fff',
+              borderRadius: '50%',
+              border: '2px solid #000'
+            }}
+          >
+            <div style={{
+              position: 'absolute',
+              top: '1px',
+              left: '1px',
+              width: '4px',
+              height: '4px',
+              backgroundColor: '#000',
+              borderRadius: '50%'
+            }} />
+          </motion.div>
+          
+          <motion.div
+            animate={{
+              scaleY: [1, 0.1, 1, 0.3, 1],
+              scaleX: [1, 1.2, 1, 1.1, 1]
+            }}
+            transition={{
+              duration: 4,
+              times: [0, 0.3, 0.35, 0.7, 1]
+            }}
+            style={{
+              position: 'absolute',
+              top: '12px',
+              right: '10px',
+              width: '8px',
+              height: '8px',
+              backgroundColor: '#fff',
+              borderRadius: '50%',
+              border: '2px solid #000'
+            }}
+          >
+            <div style={{
+              position: 'absolute',
+              top: '1px',
+              left: '1px',
+              width: '4px',
+              height: '4px',
+              backgroundColor: '#000',
+              borderRadius: '50%'
+            }} />
+          </motion.div>
+          
+          {/* Enhanced Nose */}
+          <motion.div
+            animate={{
+              scale: [1, 1.3, 0.8, 1.2, 0.9, 1],
+              rotateZ: [0, 10, -10, 5, 0]
+            }}
+            transition={{
+              duration: 4,
+              ease: "easeInOut"
+            }}
+            style={{
+              position: 'absolute',
+              top: '22px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '6px',
+              height: '5px',
+              backgroundColor: '#000',
+              borderRadius: '50%',
+              boxShadow: '0 1px 2px rgba(0,0,0,0.3)'
+            }}
+          />
+          
+          {/* Mouth */}
+          <motion.div
+            animate={{
+              scaleY: [1, 1.8, 0.5, 1.5, 0.7, 1],
+              scaleX: [1, 1.2, 0.8, 1.1, 0.9, 1]
+            }}
+            transition={{
+              duration: 4,
+              ease: "easeInOut"
+            }}
+            style={{
+              position: 'absolute',
+              top: '28px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '12px',
+              height: '4px',
+              border: '2px solid #000',
+              borderTop: 'none',
+              borderRadius: '0 0 10px 10px'
+            }}
+          />
+          
+          {/* Enhanced Ears with inner detail */}
+          <motion.div
+            animate={{
+              rotateZ: [-25, -35, -15, -30, -20, -25],
+              scaleY: [1, 1.2, 0.9, 1.1, 1]
+            }}
+            transition={{
+              duration: 4,
+              ease: "easeInOut"
+            }}
+            style={{
+              position: 'absolute',
+              top: '-8px',
+              left: '2px',
+              width: '16px',
+              height: '20px',
+              backgroundColor: '#FFC107',
+              borderRadius: '60% 60% 0% 80%',
+              border: '2px solid #000',
+              transform: 'rotate(-25deg)',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+            }}
+          >
+            <div style={{
+              position: 'absolute',
+              top: '3px',
+              left: '3px',
+              width: '8px',
+              height: '10px',
+              backgroundColor: '#FFB300',
+              borderRadius: '50% 50% 0% 70%',
+              border: '1px solid #000'
+            }} />
+          </motion.div>
+          
+          <motion.div
+            animate={{
+              rotateZ: [25, 35, 15, 30, 20, 25],
+              scaleY: [1, 1.2, 0.9, 1.1, 1]
+            }}
+            transition={{
+              duration: 4,
+              ease: "easeInOut"
+            }}
+            style={{
+              position: 'absolute',
+              top: '-8px',
+              right: '2px',
+              width: '16px',
+              height: '20px',
+              backgroundColor: '#FFC107',
+              borderRadius: '60% 60% 80% 0%',
+              border: '2px solid #000',
+              transform: 'rotate(25deg)',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+            }}
+          >
+            <div style={{
+              position: 'absolute',
+              top: '3px',
+              right: '3px',
+              width: '8px',
+              height: '10px',
+              backgroundColor: '#FFB300',
+              borderRadius: '50% 50% 70% 0%',
+              border: '1px solid #000'
+            }} />
+          </motion.div>
+        </motion.div>
+
+        {/* Enhanced Dog Body */}
+        <motion.div
+          animate={{
+            scaleY: [1, 1.1, 0.9, 1.05, 0.95, 1],
+            rotateZ: [0, 3, -3, 2, -1, 0]
+          }}
+          transition={{
+            duration: 4,
+            ease: "easeInOut"
+          }}
+          style={{
+            position: 'absolute',
+            top: '40px',
+            left: '15px',
+            width: '60px',
+            height: '35px',
+            backgroundColor: '#FFD700',
+            borderRadius: '25px',
+            border: '3px solid #000',
+            boxShadow: '0 6px 12px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.2)',
+            transform: 'translateZ(4px)',
+            background: 'linear-gradient(135deg, #FFD700 0%, #FFC107 70%, #FFB300 100%)'
+          }}
+        >
+          {/* Chest marking */}
+          <div style={{
+            position: 'absolute',
+            top: '8px',
+            left: '15px',
+            width: '30px',
+            height: '15px',
+            backgroundColor: '#FFF8DC',
+            borderRadius: '50%',
+            border: '1px solid #000',
+            opacity: 0.7
+          }} />
+        </motion.div>
+
+        {/* Enhanced Legs with paws */}
+        {[0, 1, 2, 3].map((i) => (
+          <motion.div
+            key={i}
+            animate={{
+              scaleY: [1, 0.7, 1.3, 0.8, 1.1, 1],
+              rotateZ: [0, (i % 2 ? 5 : -5), (i % 2 ? -3 : 3), 0]
+            }}
+            transition={{
+              duration: 4,
+              delay: i * 0.1,
+              ease: "easeInOut"
+            }}
+            style={{
+              position: 'absolute',
+              top: '65px',
+              left: `${22 + (i * 12)}px`,
+              width: '8px',
+              height: '20px',
+              backgroundColor: '#FFD700',
+              borderRadius: '4px 4px 6px 6px',
+              border: '2px solid #000',
+              transformOrigin: 'top',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
+              background: 'linear-gradient(180deg, #FFD700 0%, #FFC107 100%)'
+            }}
+          >
+            {/* Paw */}
+            <div style={{
+              position: 'absolute',
+              bottom: '-3px',
+              left: '-2px',
+              width: '12px',
+              height: '8px',
+              backgroundColor: '#000',
+              borderRadius: '6px',
+              border: '1px solid #333'
+            }} />
+          </motion.div>
+        ))}
+
+        {/* Enhanced Tail with curve */}
+        <motion.div
+          animate={{
+            rotateZ: [15, 45, -10, 35, -5, 25, 15],
+            scaleX: [1, 1.3, 0.8, 1.2, 0.9, 1.1, 1],
+            rotateY: [0, 20, -10, 15, 0]
+          }}
+          transition={{
+            duration: 4,
+            ease: "easeInOut"
+          }}
+          style={{
+            position: 'absolute',
+            top: '45px',
+            right: '-5px',
+            width: '25px',
+            height: '6px',
+            backgroundColor: '#FFD700',
+            borderRadius: '3px 8px 8px 3px',
+            border: '2px solid #000',
+            transformOrigin: 'left center',
+            transform: 'rotate(15deg)',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
+            background: 'linear-gradient(90deg, #FFD700 0%, #FFC107 100%)'
+          }}
+        >
+          {/* Tail tip */}
+          <div style={{
+            position: 'absolute',
+            right: '-3px',
+            top: '-1px',
+            width: '8px',
+            height: '8px',
+            backgroundColor: '#FFF8DC',
+            borderRadius: '50%',
+            border: '1px solid #000'
+          }} />
+        </motion.div>
+
+        {/* Enhanced Bark Effect - Left Side */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0, x: 0 }}
+          animate={{
+            scale: [0, 1.2, 1, 1.1, 0],
+            opacity: [0, 1, 1, 1, 0],
+            x: [0, -25, -45, -65, -85],
+            y: [0, -5, -10, -5, 0]
+          }}
+          transition={{
+            duration: 1.2,
+            delay: 0.8,
+            repeat: 2,
+            repeatDelay: 0.6
+          }}
+          style={{
+            position: 'absolute',
+            top: '-5px',
+            left: '-90px',
+            padding: '8px 12px',
+            backgroundColor: '#fff',
+            border: '3px solid #000',
+            borderRadius: '20px 20px 20px 5px',
+            fontSize: '14px',
+            fontWeight: 'bold',
+            color: '#000',
+            whiteSpace: 'nowrap',
+            fontFamily: 'Arial, sans-serif',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.3)',
+            transform: 'translateZ(10px)'
+          }}
+        >
+          WOOF! 🐕
+        </motion.div>
+
+        {/* Greeting Text - Left Side */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0, x: 0 }}
+          animate={{
+            scale: [0, 1, 1, 1, 0],
+            opacity: [0, 1, 1, 1, 0],
+            x: [0, -30, -50, -70, -90],
+            y: [20, 15, 10, 5, 0]
+          }}
+          transition={{
+            duration: 1.5,
+            delay: 2.5
+          }}
+          style={{
+            position: 'absolute',
+            top: '20px',
+            left: '-120px',
+            padding: '6px 10px',
+            backgroundColor: '#FFD700',
+            border: '2px solid #000',
+            borderRadius: '15px 15px 15px 3px',
+            fontSize: '12px',
+            fontWeight: 'bold',
+            color: '#000',
+            whiteSpace: 'nowrap',
+            fontFamily: 'Arial, sans-serif',
+            boxShadow: '0 3px 6px rgba(0,0,0,0.3)',
+            transform: 'translateZ(10px)'
+          }}
+        >
+          Hi! Ask me anything! 💬
+        </motion.div>
+      </div>
+    </motion.div>
+  )
+}
+
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isDogPlaying, setIsDogPlaying] = useState(false)
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -15,6 +452,29 @@ const Chatbot = () => {
   const [inputMessage, setInputMessage] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef(null)
+
+  // Auto-play dog animation every 10 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isOpen) { // Only play when chat is closed
+        setIsDogPlaying(true)
+      }
+    }, 10000) // Every 10 seconds
+
+    return () => clearInterval(interval)
+  }, [isOpen])
+
+  const handleChatButtonClick = () => {
+    setIsOpen(!isOpen)
+    if (!isOpen) {
+      // Play dog animation when opening chat
+      setIsDogPlaying(true)
+    }
+  }
+
+  const handleDogAnimationComplete = () => {
+    setIsDogPlaying(false)
+  }
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -128,14 +588,22 @@ const Chatbot = () => {
 
   return (
     <>
+      {/* Dog Animation */}
+      <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 99999 }}>
+        <DogAnimation 
+          isPlaying={isDogPlaying} 
+          onComplete={handleDogAnimationComplete}
+        />
+      </div>
+
       {/* Chat Button - Black outlined chat symbol on yellow background */}
       <div
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleChatButtonClick}
         style={{
           position: 'fixed',
           bottom: '24px',
           right: '24px',
-          zIndex: 99999,
+          zIndex: 99998,
           width: '64px',
           height: '64px',
           backgroundColor: '#facc15',
@@ -151,6 +619,10 @@ const Chatbot = () => {
         onMouseEnter={(e) => {
           e.target.style.transform = 'scale(1.1)'
           e.target.style.backgroundColor = '#fbbf24'
+          // Trigger dog animation on hover
+          if (!isDogPlaying) {
+            setIsDogPlaying(true)
+          }
         }}
         onMouseLeave={(e) => {
           e.target.style.transform = 'scale(1)'

@@ -7,15 +7,31 @@ const About = () => {
     { 
       icon: <Trophy />, 
       title: "Global Programming Rank", 
-      value: "#1269", 
-      description: "TOP 5% out of 24,900 participants in CodeChef contest",
+      value: "#1020", 
+      description: "Ranked 1020 out of 24,900 participants in CodeChef contest",
       highlight: true,
       link: "https://www.codechef.com/START196D"
     },
     { 
+      icon: <Trophy />, 
+      title: "Global Programming Rank", 
+      value: "#2093", 
+      description: "Ranked 2093 out of 28,400 participants in CodeChef contest",
+      highlight: true,
+      link: "https://www.codechef.com/START199D"
+    },
+    { 
+      icon: <Trophy />, 
+      title: "Global Programming Rank", 
+      value: "#2425", 
+      description: "Ranked 2425 out of 29,400 participants in CodeChef contest",
+      highlight: true,
+      link: "https://www.codechef.com/START198D"
+    },
+    { 
       icon: <Code />, 
       title: "DSA Mastery", 
-      value: "400+", 
+      value: "400+ DSA Problems solved", 
       description: "Problems solved across major competitive programming platforms",
       highlight: true
     },

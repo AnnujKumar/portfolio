@@ -86,8 +86,69 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="image-placeholder">
-              AK
+            <div className="terminal-image-container">
+              {/* Terminal coding background */}
+              <div className="terminal-code-background">
+                <div className="code-lines">
+                  <div className="code-line">import React from 'react';</div>
+                  <div className="code-line">import &#123; useState, useEffect &#125; from 'react';</div>
+                  <div className="code-line">const Developer = () =&gt; &#123;</div>
+                  <div className="code-line">  const [skills, setSkills] = useState([]);</div>
+                  <div className="code-line">  return (</div>
+                  <div className="code-line">    &lt;div className="profile"&gt;</div>
+                  <div className="code-line">      &lt;h1&gt;Annuj Kumar&lt;/h1&gt;</div>
+                  <div className="code-line">      &lt;p&gt;Software Engineer&lt;/p&gt;</div>
+                  <div className="code-line">      &lt;span&gt;Full Stack Developer&lt;/span&gt;</div>
+                  <div className="code-line">    &lt;/div&gt;</div>
+                  <div className="code-line">  );</div>
+                  <div className="code-line">&#125;;</div>
+                  <div className="code-line">export default Developer;</div>
+                  <div className="code-line">// Skills: React, Node.js, MongoDB</div>
+                  <div className="code-line">// Experience: 2+ years in development</div>
+                  <div className="code-line">// Passion: Building amazing applications</div>
+                  <div className="code-line">function createPortfolio() &#123;</div>
+                  <div className="code-line">  const skills = ['React', 'Node.js', 'MongoDB'];</div>
+                  <div className="code-line">  const projects = ['RideIt', 'CampIndia'];</div>
+                  <div className="code-line">  return &#123; skills, projects &#125;;</div>
+                  <div className="code-line">&#125;</div>
+                  <div className="code-line">console.log('Building the future!');</div>
+                  <div className="code-line">const passion = 'coding';</div>
+                  <div className="code-line">const expertise = 'full-stack';</div>
+                  <div className="code-line">if (passion === 'coding') &#123;</div>
+                  <div className="code-line">  buildAmazingThings();</div>
+                  <div className="code-line">  solveProblemsThatMatter();</div>
+                  <div className="code-line">&#125;</div>
+                  <div className="code-line">async function fetchProjects() &#123;</div>
+                  <div className="code-line">  const response = await api.get('/projects');</div>
+                  <div className="code-line">  return response.data;</div>
+                  <div className="code-line">&#125;</div>
+                  <div className="code-line">const technologies = [</div>
+                  <div className="code-line">  'React', 'Express', 'MongoDB',</div>
+                  <div className="code-line">  'Node.js', 'JavaScript', 'Python'</div>
+                  <div className="code-line">];</div>
+                  <div className="code-line">// Always learning, always growing</div>
+                  <div className="code-line">class Portfolio extends React.Component &#123;</div>
+                  <div className="code-line">  constructor(props) &#123;</div>
+                  <div className="code-line">    super(props);</div>
+                  <div className="code-line">    this.state = &#123; loading: false &#125;;</div>
+                  <div className="code-line">  &#125;</div>
+                  <div className="code-line">  render() &#123;</div>
+                  <div className="code-line">    return &lt;div&gt;Amazing Portfolio&lt;/div&gt;;</div>
+                  <div className="code-line">  &#125;</div>
+                  <div className="code-line">&#125;</div>
+                  <div className="code-line">export &#123; Portfolio &#125;;</div>
+                  <div className="code-line">// Code with purpose, build with passion</div>
+                </div>
+              </div>
+              
+              {/* Profile image */}
+              <div className="profile-image">
+                <img 
+                  src="/portfolio/images/myImage.png" 
+                  alt="Annuj Kumar - Software Engineer" 
+                  className="profile-photo"
+                />
+              </div>
             </div>
           </motion.div>
         </div>

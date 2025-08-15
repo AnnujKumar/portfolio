@@ -12,11 +12,14 @@ import Footer from './components/Footer'
 import ProjectDetail from './components/ProjectDetail'
 import Chatbot from './components/Chatbot'
 import CloudinaryImageLister from './components/CloudinaryImageLister'
+import ParticleBackground from './components/ParticleBackground'
+import { CrashBoard, CrashAnimation } from './components/CrashBoard'
 import './App.css'
 
 function App() {
   const [currentView, setCurrentView] = useState('home')
   const [selectedProject, setSelectedProject] = useState(null)
+  const [isCrashing, setIsCrashing] = useState(false)
 
   // Check if URL has #image-lister to show the image discovery tool
   useEffect(() => {
@@ -46,17 +49,28 @@ function App() {
     }, 100)
   }
 
+  const handleCrash = () => {
+    setIsCrashing(true)
+  }
+
+  const handleCrashComplete = () => {
+    setIsCrashing(false)
+  }
+
   if (currentView === 'project-detail' && selectedProject) {
     return (
       <div className="App">
         <ProjectDetail project={selectedProject} onBack={handleBackToProjects} />
         <Chatbot />
+        <CrashBoard onCrash={handleCrash} />
+        <CrashAnimation isActive={isCrashing} onComplete={handleCrashComplete} />
       </div>
     )
   }
 
   return (
     <div className="App">
+      <ParticleBackground />
       <Header />
       <Hero />
       <About />
@@ -68,6 +82,8 @@ function App() {
       <Contact />
       <Footer />
       <Chatbot />
+      <CrashBoard onCrash={handleCrash} />
+      <CrashAnimation isActive={isCrashing} onComplete={handleCrashComplete} />
     </div>
   )
 }

@@ -121,7 +121,6 @@ const Skills = () => {
                   >
                     <div className="skill-info">
                       <span className="skill-name">{skill.name}</span>
-                      <span className="skill-percentage">{skill.level}%</span>
                     </div>
                     <div className="skill-bar">
                       <motion.div
